@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Manager : MonoBehaviour {
+	public GameObject space_craft;
+
 	public Camera first_person_camera;
 	public Camera first_person_camera_reverse;
 
@@ -21,6 +23,22 @@ public class Manager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.C)){
 			SwitchCamera();
 		}
+
+		// Accelerate
+		if (Input.GetKey(KeyCode.UpArrow)){
+			Accelerate(false);
+		}
+		if (Input.GetKey(KeyCode.DownArrow)){
+			Accelerate(true);
+		}
+
+		// Steering
+		if (Input.GetKey(KeyCode.LeftArrow)){
+			Steer(false);
+		}
+		if (Input.GetKey(KeyCode.RightArrow)){
+			Steer(true);
+		}
 	}
 
 	void SwitchCamera () {
@@ -32,6 +50,24 @@ public class Manager : MonoBehaviour {
 			third_person_camera.gameObject.SetActive(false);
 			first_person_camera.gameObject.SetActive(true);
 			current_camera = first_person_camera;
+		}
+	}
+
+	void Accelerate (bool is_break) {
+		Rigidbody craft_body = space_craft.GetComponent<Rigidbody>();
+		if (is_break){
+			craft_body.AddForce(new Vector3(0, 0, -100));
+		} else {
+			craft_body.AddForce(new Vector3(0, 0, 100));
+		}
+	}
+
+	void Steer (bool is_right) {
+		Rigidbody craft_body = space_craft.GetComponent<Rigidbody>();
+		if (is_right){
+			craft_body.AddTorque(new Vector3(0, 100, 0));
+		} else {
+			craft_body.AddTorque(new Vector3(0, -100, 0));
 		}
 	}
 }
