@@ -56,18 +56,18 @@ public class Manager : MonoBehaviour {
 	void Accelerate (bool is_break) {
 		Rigidbody craft_body = space_craft.GetComponent<Rigidbody>();
 		if (is_break){
-			craft_body.AddForce(new Vector3(0, 0, -100));
+			//craft_body.AddForce(space_craft.transform.rotation);
 		} else {
-			craft_body.AddForce(new Vector3(0, 0, 100));
+			//craft_body.AddForce(space_craft.transform.rotation);
 		}
 	}
 
 	void Steer (bool is_right) {
 		Rigidbody craft_body = space_craft.GetComponent<Rigidbody>();
 		if (is_right){
-			craft_body.AddTorque(new Vector3(0, 100, 0));
+			craft_body.AddTorque(new Vector3(0, 30, 0));
 		} else {
-			craft_body.AddTorque(new Vector3(0, -100, 0));
+			craft_body.AddTorque(new Vector3(0, -30, 0));
 		}
 	}
 }
