@@ -38,7 +38,7 @@ public class SpaceCraft : MonoBehaviour {
 	void Accelerate (bool is_break) {
 		Rigidbody craft_body = this.gameObject.GetComponent<Rigidbody>();
 		if (is_break){
-			if (craft_body.velocity.magnitude > 5) {
+			if (craft_body.velocity.magnitude > 15) {
 				craft_body.velocity = craft_body.velocity * 0.9f;
 			} else {
 				craft_body.AddForce(this.transform.forward * -power);
