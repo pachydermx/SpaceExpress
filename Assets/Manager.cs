@@ -12,9 +12,20 @@ public class Manager : MonoBehaviour {
 
 	private Camera current_camera;
 
+	public GameObject track;
+	public GameObject asteroid;
+	public GameObject stars;
+	private Bounds ast_range;
+
 	// Use this for initialization
 	void Start () {
 		current_camera = third_person_camera;
+
+		// Generate asteroids
+		ast_range = track.gameObject.GetComponent<Renderer>().bounds;
+		for (int i = 0; i < 10000; i++){
+			GenerateAsteroid();
+		}
 	}
 	
 	// Update is called once per frame
@@ -79,5 +90,10 @@ public class Manager : MonoBehaviour {
 		}
 	}
 
+	void GenerateAsteroid () {
+		Vector3 pos = new Vector3(Random.Range(ast_range.center.x - ast_range.extents.x, ast_range.center.x + ast_range.extents.x), Random.Range(ast_range.center.y - ast_range.extents.y - 100, ast_range.center.y + ast_range.extents.y + 100), Random.Range(ast_range.center.z - ast_range.extents.z, ast_range.center.z + ast_range.extents.z));
+		GameObject ast = (GameObject) Instantiate(asteroid, pos, new Quaternion(0f, 0f, 0f, 0f));
+		ast.transform.parent = stars.transform;
+	}
 
 }
