@@ -26,18 +26,18 @@ public class Manager : MonoBehaviour {
 
 		// Accelerate
 		if (Input.GetKey(KeyCode.UpArrow)){
-			Accelerate(false);
+			space_craft.SendMessage("Accelerate", false);
 		}
 		if (Input.GetKey(KeyCode.DownArrow)){
-			Accelerate(true);
+			space_craft.SendMessage("Accelerate", true);
 		}
 
 		// Steering
 		if (Input.GetKey(KeyCode.LeftArrow)){
-			Steer(false);
+			space_craft.SendMessage("Steer", false);
 		}
 		if (Input.GetKey(KeyCode.RightArrow)){
-			Steer(true);
+			space_craft.SendMessage("Steer", true);
 		}
 	}
 
@@ -53,21 +53,5 @@ public class Manager : MonoBehaviour {
 		}
 	}
 
-	void Accelerate (bool is_break) {
-		Rigidbody craft_body = space_craft.GetComponent<Rigidbody>();
-		if (is_break){
-			//craft_body.AddForce(space_craft.transform.rotation);
-		} else {
-			//craft_body.AddForce(space_craft.transform.rotation);
-		}
-	}
 
-	void Steer (bool is_right) {
-		Rigidbody craft_body = space_craft.GetComponent<Rigidbody>();
-		if (is_right){
-			craft_body.AddTorque(new Vector3(0, 30, 0));
-		} else {
-			craft_body.AddTorque(new Vector3(0, -30, 0));
-		}
-	}
 }
