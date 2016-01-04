@@ -16,14 +16,17 @@ public class SpaceCraft : MonoBehaviour {
 
 		// remove draft
 		float velocity = rb.velocity.magnitude;
-		Vector3 front = this.transform.forward.normalized;
-		rb.velocity = new Vector3(front.x * velocity, rb.velocity.y, front.z * velocity);
 		debug.text = velocity + ".";
 
 	}
 
 	void Steer (bool is_right) {
 		Rigidbody craft_body = this.gameObject.GetComponent<Rigidbody>();
+
+		// remove draft
+		float velocity = craft_body.velocity.magnitude;
+		Vector3 front = this.transform.forward.normalized;
+		craft_body.velocity = new Vector3(front.x * velocity, craft_body.velocity.y, front.z * velocity);
 
 		if (is_right){
 			craft_body.AddTorque(this.transform.up * 600);
@@ -35,7 +38,11 @@ public class SpaceCraft : MonoBehaviour {
 	void Accelerate (bool is_break) {
 		Rigidbody craft_body = this.gameObject.GetComponent<Rigidbody>();
 		if (is_break){
-			craft_body.velocity = craft_body.velocity * 0.9f;
+			if (craft_body.velocity.magnitude > 5) {
+				craft_body.velocity = craft_body.velocity * 0.9f;
+			} else {
+				craft_body.AddForce(this.transform.forward * -power);
+			}
 		} else {
 			craft_body.AddForce(this.transform.forward * power);
 		}
