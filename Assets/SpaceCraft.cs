@@ -42,9 +42,9 @@ public class SpaceCraft : MonoBehaviour {
 		}
 
 			if (is_right){
-				craft_body.AddTorque(this.transform.up * 1000);
+				craft_body.AddTorque(this.transform.up * 2000);
 			} else {
-				craft_body.AddTorque(this.transform.up * -1000);
+				craft_body.AddTorque(this.transform.up * -2000);
 			}
 	}
 

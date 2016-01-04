@@ -23,6 +23,12 @@ public class Manager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.C)){
 			SwitchCamera();
 		}
+		if (Input.GetKeyDown(KeyCode.B)){
+			SeeBack(true);
+		}
+		if (Input.GetKeyUp(KeyCode.B)){
+			SeeBack(false);
+		}
 
 		// Accelerate
 		if (Input.GetKey(KeyCode.UpArrow)){
@@ -50,6 +56,26 @@ public class Manager : MonoBehaviour {
 			third_person_camera.gameObject.SetActive(false);
 			first_person_camera.gameObject.SetActive(true);
 			current_camera = first_person_camera;
+		}
+	}
+
+	void SeeBack (bool back) {
+		if (current_camera == this.first_person_camera){
+			if (back){
+				first_person_camera.gameObject.SetActive(false);
+				first_person_camera_reverse.gameObject.SetActive(true);
+			} else {
+				first_person_camera.gameObject.SetActive(true);
+				first_person_camera_reverse.gameObject.SetActive(false);
+			}
+		} else {
+			if (back){
+				third_person_camera.gameObject.SetActive(false);
+				third_person_camera_reverse.gameObject.SetActive(true);
+			} else {
+				third_person_camera.gameObject.SetActive(true);
+				third_person_camera_reverse.gameObject.SetActive(false);
+			}
 		}
 	}
 

@@ -17,6 +17,8 @@ ModelImporter:
     3300002: Plane
     4300000: NurbsCurve
     4300002: Plane
+    6400000: NurbsCurve
+    6400002: Plane
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -44,7 +46,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 20
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
