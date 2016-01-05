@@ -4,6 +4,8 @@ using System.Collections;
 public class SpaceCraft : MonoBehaviour {
 	public UnityEngine.UI.Text debug;
 
+	public UnityEngine.UI.Text Speedmeter;
+
 	float power = 300;
 	bool flying = true;
 
@@ -18,6 +20,10 @@ public class SpaceCraft : MonoBehaviour {
 		// remove draft
 		float velocity = rb.velocity.magnitude;
 		debug.text = velocity + "\n" + flying;
+
+		// Update UI
+		velocity *= 3.6f;
+		Speedmeter.text = velocity.ToString("F0") + " KPH";
 
 	}
 

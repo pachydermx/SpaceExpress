@@ -16,6 +16,7 @@ public class Manager : MonoBehaviour {
 	public GameObject asteroid;
 	public GameObject stars;
 	private Bounds ast_range;
+	
 
 	// Use this for initialization
 	void Start () {
